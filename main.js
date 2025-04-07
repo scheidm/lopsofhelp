@@ -20,7 +20,7 @@ function weighsTheSameAs(amount) {
   let closestAnimal = 999;
   for (let i = 0; i < animalData.length; i++) {
     let animal = animalData[i];
-    if(animal.weight*0.93 <= amount){
+    if(animal.weight * 0.9 <= amount){
       closestAnimal = i;
       break;
     }
@@ -31,6 +31,7 @@ function weighsTheSameAs(amount) {
   let minimum = amount;
   let a = animalData[closestAnimal];
   let animals = {a:a};
+  if( combinationToDelta({a: 1},animals,amount) <= 0.10 *amount ) return  stringsFromHash({a: 1}, animals, amount);
   list =       [{a: 1}, {a: 2}]
   let b = animalData[closestAnimal+1];
 
