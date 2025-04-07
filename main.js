@@ -39,12 +39,11 @@ function weighsTheSameAs(amount) {
     list.push({b: 2});
     list.push({b: 3});
     list.push({b: 1, a:1});
-    list.push({b: 2, a:1});
   }
   let c = animalData[ closestAnimal+2 ];
   if(c != undefined ){
     animals.c = c;
-    list.push({c: 1,b: 1, a:1});
+    list.push({c: 1, b: 1});
     list.push({c: 1, a:1});
  }
  for (let i = 0; i < list.length; i++) {
@@ -90,16 +89,14 @@ function stringsFromHash(hash,animals, amount){
   let response = `${amount}g weights about the same as`;
 
   let strings  = [];
-  for (const key of Object.keys(hash)) {
+  for (const key of Object.keys(hash).sort()) {
     console.log(key);
     console.log(animals);
     let count = hash[key];
     strings.push(animalsToString(animals[key], count));
   }
 
-  if(strings.length === 3){
-    return `${response} ${strings[0]}, ${strings[1]} and ${strings[2]}`;
-  }else if(strings.length === 2){
+  if(strings.length === 2){
     return `${response} ${strings[0]} and ${strings[1]}`;
   }else{
     return `${response} ${strings[0]}`;
