@@ -1,3 +1,7 @@
+---
+title: JP Mosley Park
+---
+
 #stockbridge-ga
 <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.16503667831422%2C33.532670972488205%2C-84.16082561016084%2C33.53472789464694&amp;layer=mapnik&amp;marker=33.53369943968489%2C-84.16293114423752" style="border: 1px solid black"></iframe>
 
