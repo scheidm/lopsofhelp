@@ -15,7 +15,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem auto;
+  margin: 2rem 0 0 0;
 }
 
 .logo {
@@ -31,6 +31,9 @@ header {
   display: none;
 }
 
+img{ 
+  max-width: 800px;
+}
 footer {
   margin: 4rem auto 0;
   padding: 0;

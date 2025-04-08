@@ -11,4 +11,4 @@ title: JP Mosley Park
 Stockbridge, GA 30281](https://www.openstreetmap.org/?mlat=33.533699&amp;mlon=-84.162931#map=19/33.533699/-84.162931)
 
 
-![[jp_mosley_1.jpg]]
+<image src="/assets/jp_mosley_1.jpg]"/>

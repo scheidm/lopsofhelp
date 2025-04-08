@@ -1,3 +1,7 @@
+---
+title: Memorial Park
+---
+
 #stockbridge-ga 
 <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.23160910606386%2C33.53488886909884%2C-84.22783255577089%2C33.538416817228054&amp;layer=mapnik&amp;marker=33.53665286116118%2C-84.22972083091736" style="border: 1px solid black"></iframe>
 

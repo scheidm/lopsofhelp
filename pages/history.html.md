@@ -1,3 +1,6 @@
+---
+title: Squire Bun's plogging adventures to date!
+---
 <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1XVxgD5NYkc3cTlpNoWRcOJIPcr1gofA&ehbc=2E312F" width="600" height="480"></iframe>
 
 | **Date**   | **Location**                          | **Trash (g)**                 | **Distance (km)**        |

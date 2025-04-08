@@ -1,3 +1,7 @@
+---
+title: Doll's Head Trail
+---
+
 #atlanta-ga 
 <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.3547010421753%2C33.67549709670186%2C-84.33513164520264%2C33.689942106093675&amp;layer=transportmap&amp;marker=33.68272%2C-84.34492" style="border: 1px solid black"></iframe>
 
