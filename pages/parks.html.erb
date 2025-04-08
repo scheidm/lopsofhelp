@@ -1,14 +1,19 @@
-# ---
-# title: Squire Bun's Parks and Trails
-# ---
+---
+title: Squire Bun's Parks and Trails
+---
 <h3 style="text-align:center;margin:0">Public Greenspaces South of ATL center </h3>
 <% 
-  weight, distance = history_overview
-%>
+  strings = weighs_the_same_as(weight_matching(formula:nil)).map{ |a| animals_to_string(a) }
+  if strings.length > 1
+    strings[-1]="and #{strings[-1]}"
+  end
+  animal_string = strings.join ", "
 
+%>
 <p>
-    As of April 8th, we've hiked more than <strong><%= distance %> miles</strong> 
-    and removed more than <strong><%= weight %> pounds</strong> of garbage from the community. That trash weighs about the same as Common Snapping Turtle and a Nine-banded Armadillo!</p>
+    As of April 8th, we've hiked more than <strong><%= distance_matching %> miles</strong>
+    and removed more than <strong><%= weight_matching %> pounds</strong> of garbage from the community.
+    That trash weighs the same as <%= animal_string  %></p>
 <ul>
     <% current_page.children.each do |child| %>
       <li><%= link_to_page child %></li>
