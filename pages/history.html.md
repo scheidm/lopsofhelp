@@ -23,3 +23,4 @@ title: Squire Bun's plogging adventures to date!
 | 2025-04-04 | [[Pates Creek Nature Preserve]]       | 1094                          | 1.26                     |
 | 2025-04-05 | [[Arabia Mountain Meadow Loop]]       | 320                           | 2.58                     |
 | 2025-04-06 | [[Clark Community Park]]              | 439                           | 1.91                     |
+| 2025-04-08 | [[Clayton County International Park]] | 1120                           | 1.42                     |

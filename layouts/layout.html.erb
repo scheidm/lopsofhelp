@@ -8,9 +8,11 @@
   </head>
   <body>
     <header>
+      <a href="/" style="display: flex;flex-flow: column;align-items: center;">
       <%= image_tag "bunny.jpg", class: "logo logo-light" %>
       <%= image_tag "bunny.jpg", class: "logo logo-dark" %>
-      <h1 id="title"><%= current_page.data.fetch("title", "Sitepress") %></h1>
+      
+      <h1 id="title"><%= current_page.data.fetch("title", "Sitepress") %></h1></a>
     </header>
     <main>
       <%= yield %>

@@ -1,0 +1,27 @@
+---
+title: Squire Bun's Parks and Trails
+---
+<h3 style="text-align:center;margin:0">Public Greenspaces South of ATL center </h3>
+<% 
+
+# history = YAML.load_file(image_path("history.yml"))
+# distance = 0
+# weight = 0
+# history.each do |date|
+#   distance += date.kilometers
+#   weight += date.grams
+# end
+# distance *= 0.621371
+# weight *= 2.20462
+distance = 19
+weight = 24
+%>
+
+<p>
+    As of April 8th, we've hiked more than <strong><%= distance %> miles</strong> 
+    and removed more than <strong><%= weight %> pounds</strong> of garbage from the community. That trash weighs about the same as Common Snapping Turtle and a Nine-banded Armadillo!</p>
+<ul>
+    <% current_page.children.each do |child| %>
+      <li><%= link_to_page child %></li>
+    <% end %>
+  </ul>
