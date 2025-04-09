@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= current_page.data.fetch("title", "Sitepress") %></title>
+    <%= stylesheet_link_tag "site" %>
+  </head>
+  <body>
+    <header>
+      <a href="/" style="display: flex;flex-flow: column;align-items: center;">
+      <%= image_tag "bunny.jpg", class: "logo logo-light" %>
+      <%= image_tag "bunny.jpg", class: "logo logo-dark" %>
+      
+      <h1 id="title"><%= current_page.data.fetch("title", "Sitepress") %></h1></a>
+    </header>
+    <main>
+    <h3 style="text-align:center;margin:0"><b>Street Address:</b> <a href=<%= "\"#{current_page.data["url"]}\""%>><%= raw(current_page.data["address"]) %></a></h3>
+    <iframe width="800" height="400" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.24183368682863%2C33.546348585415245%2C-84.2320489883423%2C33.55358222399351&amp;layer=transportmap&amp;marker=33.54996548040621%2C-84.23694133758545" style="border: 1px solid black"></iframe>
+
+
+
+
+      <%= image_tag current_page.data["image"] unless current_page.data["image"].nil? %>
+
+      <%= yield %>
+    </main>
+    <footer>
+      <a href="/parks">Find more trails</a>
+    </footer>
+  </body>
+</html>
