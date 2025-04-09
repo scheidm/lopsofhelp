@@ -8,10 +8,12 @@ title: Squire Bun's Parks and Trails
     strings[-1]="and #{strings[-1]}"
   end
   animal_string = strings.join ", "
+      @db = SQLite3::Database.new "bunny.db"
+      last_record = Time.parse(@db.execute("select date from activities order by date desc limit 1")[0][0].to_s)
 
 %>
 <p>
-    As of April 8th, we've hiked more than <strong><%= distance_matching %> miles</strong>
+    As of <%= last_record.strftime "%B %-d" %>, we've hiked more than <strong><%= distance_matching %> miles</strong>
     and removed more than <strong><%= weight_matching %> pounds</strong> of garbage from the community.
     That trash weighs the same as <%= animal_string  %></p>
 <ul>
