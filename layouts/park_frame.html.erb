@@ -25,8 +25,9 @@
 
       <%= yield %>
     </main>
-    <footer>
-      <a href="/parks">Find more trails</a>
+    <footer>        
+      <p>Lops of Help has removed <%= weight_matching(park_id:current_page.data["id"], round:1) %> pounds of trash from this park. Last visited on <%= last_visit(current_page.data["id"]) %>
+      <br/><a href="/parks">Find more trails!</a>
     </footer>
   </body>
 </html>

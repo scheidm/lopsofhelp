@@ -20,11 +20,16 @@ module PageHelper
     ]
   end
 
-  def weight_matching(park_id: nil, formula: "* 2.20462 / 1000")
-    activities_matching("select SUM(waste) #{formula}", park_id).flatten.reduce(:sum).round
+  def weight_matching(park_id: nil, formula: "* 2.20462 / 1000",round:0)
+    activities_matching("select SUM(waste) #{formula}", park_id).flatten.reduce(:sum).round round
   end
-  def distance_matching(park_id: nil, formula:"* 0.621371 / 1000")
-    activities_matching("select SUM(distance) #{formula}", park_id).flatten.reduce(:sum).round
+  def distance_matching(park_id: nil, formula:"* 0.621371 / 1000", round:0)
+    activities_matching("select SUM(distance) #{formula}", park_id).flatten.reduce(:sum).round round
+  end
+
+  def last_visit park_id = nil
+    @db = SQLite3::Database.new "bunny.db" if @db.nil?
+    @db.execute("select date from activities where park_id = #{park_id} order by date desc limit 1")[0][0]
   end
 
   def activities_matching query,park_id = nil
