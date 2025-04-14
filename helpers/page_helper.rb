@@ -26,7 +26,7 @@ module PageHelper
 
     matching.round round
   end
-  
+
   def distance_matching(park_id: nil, formula:"* 0.621371 / 1000", round:0)
     matching = activities_matching("select SUM(distance) #{formula}", park_id).flatten.reduce(:sum)
     return 0 if matching.nil?
@@ -36,8 +36,10 @@ module PageHelper
 
   def last_visit park_id = nil
     @db = SQLite3::Database.new "bunny.db" if @db.nil?
-    visits = @db.execute("select date from activities where park_id = #{park_id} order by date desc limit 1")
-    return visits[0][0] if visits.length > 0
+    where = park_id.nil? ? '' : "where park_id = #{park_id}"
+    sql = "select date from activities #{where} order by date desc limit 1"
+    visits = @db.execute sql
+    return Time.parse(visits[0][0]) if visits.length > 0
 
     nil
   end
@@ -62,6 +64,13 @@ module PageHelper
     end
   end
 
+  def weight_the_same_string park_id:nil
+    strings = weighs_the_same_as(weight_matching park_id:, formula: nil ).map{ |a| animals_to_string(a) }
+    if strings.length > 1
+      strings[-1]="and #{strings[-1]}"
+    end
+    strings.join ", "
+  end
 
   def weighs_the_same_as(amount)
     closest_animal = 999

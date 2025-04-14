@@ -15,7 +15,7 @@
       <h1 id="title"><%= current_page.data.fetch("title", "Sitepress") %></h1></a>
     </header>
     <main>
-    <h3 style="text-align:center;margin:0"><b>Street Address:</b> <a href=<%= "\"#{current_page.data["url"]}\""%>><%= raw(current_page.data["address"]) %></a></h3>
+    <h3 style="text-align:center;margin:0"><b>Street Address:</b> <a href=<%= "#{current_page.data["url"]}"%>><%= raw(current_page.data["address"]) %></a></h3>
     <iframe width="800" height="400" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.24183368682863%2C33.546348585415245%2C-84.2320489883423%2C33.55358222399351&amp;layer=transportmap&amp;marker=33.54996548040621%2C-84.23694133758545" style="border: 1px solid black"></iframe>
 
 
@@ -29,10 +29,15 @@
       <% 
         removal_text = ""
         waste = weight_matching(park_id:current_page.data["id"], round:1)
-        removal_text = "Lops of Help has removed #{waste} pounds of trash from #{current_page.data.fetch("title")}. "           if waste > 0
+        if waste > 0
+          removal_text = "
+            Lops of Help has removed #{waste} pounds of trash from #{current_page.data.fetch("title")}.
+            That trash weighs the same as #{weight_the_same_string park_id:current_page.data["id"]}.
+          "
+        end
         visit_text = ""
         visit_date = last_visit(current_page.data["id"])
-        visit_text = "Last visited on #{visit_date}."unless visit_date.nil? 
+        visit_text = "Last visited on #{visit_date.strftime "%B %-d"}." unless visit_date.nil?
       %>
       <p><%= removal_text %><%= visit_text %>
       <br/><a href="/parks">Find more trails!</a>
