@@ -12,8 +12,8 @@ module PageHelper
       {name: "Eastern Cottontail", weight:1400, url: "https://www.inaturalist.org/taxa/43111-Sylvilagus-floridanus"},
       {name: "Barred Owl", weight:800, url: "https://www.inaturalist.org/taxa/19893-Strix-varia"},
       {name: "Red Shouldered Hawk", weight:550, url: "https://www.inaturalist.org/taxa/5206-Buteo-lineatus"},
-      {name: "♀ Common Watersnake", weight:275, url: "https://www.inaturalist.org/taxa/29305-Nerodia-sipedon"},
-      {name: "♂ Common Watersnake", weight:110, url: "https://www.inaturalist.org/taxa/29305-Nerodia-sipedon"},
+      {name: "♀   Common Watersnake", weight:275, url: "https://www.inaturalist.org/taxa/29305-Nerodia-sipedon"},
+      {name: "♂   Common Watersnake", weight:110, url: "https://www.inaturalist.org/taxa/29305-Nerodia-sipedon"},
       {name: "Yellow-bellied Sapsucker", weight:50, url: "https://www.inaturalist.org/taxa/18463-Sphyrapicus-varius"},
       {name: "Carolina Wren", weight:20, url: "https://www.inaturalist.org/taxa/7513-Thryothorus-ludovicianus"},
       {name: "Green Anole", weight:5, url: "https://www.inaturalist.org/taxa/36514-Anolis-carolinensis"}
@@ -37,7 +37,7 @@ module PageHelper
   def last_visit park_id = nil
     @db = SQLite3::Database.new "bunny.db" if @db.nil?
     where = park_id.nil? ? '' : "where park_id = #{park_id}"
-    sql = "select date from activities #{where} order by date desc limit 1"
+    sql = "select last_visit from park_visit_history #{where}"
     visits = @db.execute sql
     return Time.parse(visits[0][0]) if visits.length > 0
 
