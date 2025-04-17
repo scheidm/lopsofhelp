@@ -1,5 +1,8 @@
 
 module PageHelper
+  def geo_to_mobile(geo)
+    "geo:#{geo}?z=17"
+  end
   def geo_to_open_maps(geo, layers="TN")
     lat,lon = geo.split(',')
     return "https://www.openstreetmap.org/?mlat=#{lat};mlon=#{lon}"
