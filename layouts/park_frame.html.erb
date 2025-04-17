@@ -15,22 +15,19 @@
       <h1 id="title"><%= current_page.data.fetch('title', 'Sitepress') %></h1></a>
     </header>
     <main>
-    <h3 style="text-align:center;margin:0">
-      <b>Street Address:</b>
-      <a href="<%= geo_to_open_maps(current_page.data.fetch('geo')) %>">
-        <%= current_page.data.fetch('address') %>
-      </a>
-    </h3>
-    <iframe 
-      width="800" height="400" 
-      src="<%= current_page.data.fetch('embed') %>" 
-      style="border: 1px solid black"
-    ></iframe>
-    <% img = current_page.data.fetch('image', nil) 
-      unless img.nil?
-    %>
-      <%= image_tag  img %>
-    <% end %>
+      <h3 style="text-align:center;margin:0">
+        <b>Street Address:</b>
+        <a href="<%= geo_to_open_maps(current_page.data.fetch('geo')) %>">
+          <%= current_page.data.fetch('address') %>
+        </a>
+      </h3>
+      <iframe 
+        width="800" height="400" 
+        src="<%= current_page.data.fetch('embed') %>" 
+        style="border: 1px solid black"
+      ></iframe>
+    
+      <%= image_tag "parks/#{current_page.request_path.split('/').last}-#{current_page.data.fetch('image', 1)}.jpg",onerror:"this.style.display='none'" %>
 
       <%= yield %>
     </main>
