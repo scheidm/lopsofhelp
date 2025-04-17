@@ -9,11 +9,7 @@ title: Squire Bun's Parks and Trails
     and removed more than <strong><%= weight_matching %> pounds</strong> of garbage from the community.
     That trash weighs the same as <%= weight_the_same_string  %></p>
 <ul>
-  <%
-  site = Sitepress::Site.new
-  site.glob("**/parks/*.html.*")
-    .sort_by{ |page| page.data.dig("title")}.each do |child|
-  %>
+    <% park_pages.each do |child| %>
       <li><%= link_to_page child %></li>
     <% end %>
   </ul>

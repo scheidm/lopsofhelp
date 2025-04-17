@@ -1,5 +1,17 @@
 
 module PageHelper
+  def geo_to_open_maps(geo, layers="TN")
+    lat,lon = geo.split(',')
+    return "https://www.openstreetmap.org/?mlat=#{lat};mlon=#{lon}"
+  end
+  def park_pages
+    site = Sitepress::Site.new
+    pages=site.glob("**/parks/*.html.*")
+      .sort_by{ |page| page.data.dig("title")}
+    puts pages 
+    puts "dsfajkladfsjklfaldsjklawefjksadhkashdkfkjd"
+    pages.reject {|child| puts child;child.data["hide"] == true}
+  end
   def animal_data
     return [
       {name: "Stag White Tail Deer", weight:225000, url: "https://www.inaturalist.org/taxa/42223-Odocoileus-virginianus"},

@@ -9,11 +9,7 @@ title: Lops of Help
 
 
 <ul>
-    <% 
-    site = Sitepress::Site.new
-    site.glob("**/parks/*.html.*")
-      .sort_by{ |page| page.data.dig("title")}.each do |child|
-    %>
+    <% park_pages.each do |child| %>
       <li><%= link_to_page child %></li>
     <% end %>
 </ul>
