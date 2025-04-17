@@ -15,7 +15,6 @@
       <h1 id="title"><%= current_page.data.fetch('title', 'Sitepress') %></h1></a>
     </header>
     <main>
-    <%= current_page.data.fetch('geo','') %>
     <h3 style="text-align:center;margin:0">
       <b>Street Address:</b>
       <a href="<%= geo_to_open_maps(current_page.data.fetch('geo')) %>">
