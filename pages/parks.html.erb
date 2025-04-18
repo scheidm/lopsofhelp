@@ -2,14 +2,15 @@
 title: Squire Bun's Parks and Trails
 ---
 <h3 style="text-align:center;margin:0">Public Greenspaces South of ATL center </h3>
-<% 
-%>
+<% cities = park_city_hash %>
 <p>
     As of <%= last_visit.strftime "%B %-d" %>, we've hiked more than <strong><%= distance_matching %> miles</strong>
     and removed more than <strong><%= weight_matching %> pounds</strong> of garbage from the community.
     That trash weighs the same as <%= weight_the_same_string  %></p>
 <ul>
-    <% park_pages.each do |child| %>
-      <li><%= link_to_page child %></li>
+    <% park_pages.each do |child| 
+      name = cities[child.data.fetch('id',nil)]
+    %>
+      <li><strong><%= link_to_page child %></strong> located in <%= raw(city_link pre_script:'', name: ,post_script:'') %></li>
     <% end %>
   </ul>

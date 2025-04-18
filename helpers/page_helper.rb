@@ -7,12 +7,31 @@ module PageHelper
     lat,lon = geo.split(',')
     return "https://www.openstreetmap.org/?mlat=#{lat};mlon=#{lon}"
   end
+  def parks_by_city(city_id = current_page.data.fetch('id',nil))
+    @db = SQLite3::Database.new "bunny.db" if @db.nil?
+    sql = "select parks.name from parks join cities where cities.id = parks.city_id and cities.id = #{city_id} order by parks.name"
+    @db.execute(sql).flatten
+  end
+  def parks_to_cities
+    @db = SQLite3::Database.new "bunny.db" if @db.nil?
+    @db.execute("select parks.id, cities.name from cities join parks on cities.id = parks.city_id").to_h
+  end
 
+  def city_link(name:nil, pre_script: "More trails in ", post_script:"")
+    return '' if name.nil?
+    '<a href="/cities/'+name.downcase.gsub(' ','-')+'">'+ pre_script + name + post_script+'</a>'
+  end
+  
   def park_pages
     site = Sitepress::Site.new
     pages=site.glob("**/parks/*.html.*")
       .sort_by{ |page| page.data.dig("title")}
     pages.reject {|child| puts child;child.data["hide"] == true}
+  end
+  def park_city_hash
+    @db = SQLite3::Database.new "bunny.db" if @db.nil?
+    sql = "select parks.id, cities.name from parks join cities where cities.id = parks.city_id"
+    @db.execute(sql).to_h
   end
   def animal_data
     return [
@@ -51,7 +70,7 @@ module PageHelper
   def last_visit park_id = nil
     @db = SQLite3::Database.new "bunny.db" if @db.nil?
     where = park_id.nil? ? '' : "where park_id = #{park_id}"
-    sql = "select last_visit from park_visit_history #{where}"
+    sql = "select last_visit from park_visit_history #{where} order by last_visit desc"
     visits = @db.execute sql
     return Time.parse(visits[0][0]) if visits.length > 0
 

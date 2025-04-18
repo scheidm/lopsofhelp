@@ -32,21 +32,25 @@
       <%= yield %>
     </main>
     <footer>    
-      <% 
+    <%=  %>
+      <%
+        id = current_page.data.fetch('id')
+        city = parks_to_cities()[id]
         removal_text = ""
-        waste = weight_matching(park_id:current_page.data.fetch('id'), round:1)
+        waste = weight_matching(park_id: id, round:1)
         if waste > 0
           removal_text = "
             Lops of Help has removed #{waste} pounds of trash from #{current_page.data.fetch('title')}.
-            That trash weighs the same as #{weight_the_same_string park_id:current_page.data.fetch('id')}.
+            That trash weighs the same as #{weight_the_same_string park_id: id}.
           "
         end
         visit_text = ""
-        visit_date = last_visit(current_page.data.fetch('id'))
+        visit_date = last_visit(id)
         visit_text = "Last visited on #{visit_date.strftime '%B %-d'}." unless visit_date.nil?
       %>
       <p><%= removal_text %><%= visit_text %>
-      <br/><a href="/parks">Find more trails!</a>
+      <br/><%= raw(city_link name:city) %>
+      <br/><a href="/parks">Yet more trails!</a>
     </footer>
   </body>
 </html>
