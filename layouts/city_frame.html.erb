@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= current_page.data.fetch('title', "Sitepress") %></title>
+    <%= stylesheet_link_tag "site" %>
+  </head>
+  <body>
+    <header>
+      <a href="/" style="display: flex;flex-flow: column;align-items: center;">
+      <%= image_tag "bunny.jpg", class: "logo logo-light" %>
+      <%= image_tag "bunny.jpg", class: "logo logo-dark" %>
+      
+      <h1 id="title"><%= current_page.data.fetch('title', 'Sitepress') %></h1></a>
+    </header>
+    <main>
+    <h3> Parks located in <%= current_page.data.fetch('title','Sitepress') %> </h3>
+    <ul>
+      <% 
+        parks_by_city.each do |park_name| 
+      %>
+        <li><a href="/parks/<%= park_name.downcase.gsub(' ','-') %>"><%= park_name %><a> </li>
+      <% end %>
+    </ul>
+    </main>
+    <footer>    
+      <br/><a href="/parks">Find more trails!</a>
+    </footer>
+  </body>
+</html>
