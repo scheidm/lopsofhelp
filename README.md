@@ -1,6 +1,8 @@
 # Lops of Help
 
-A website dedicated to helping everyone enjoy public green spaces south of Atlanta city center
+A website dedicated to helping everyone enjoy public green spaces, based South of Atlanta city center.
+
+A listing of public trails, and a community effort to cleaning up as we explore
 
 https://lopsof.help
 
