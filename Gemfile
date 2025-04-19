@@ -17,3 +17,4 @@ gem "markdown-rails", "~> 1.0"
 # View component libraries.
 gem "phlex-rails"
 gem "view_component"
+gem "bootstrap"
