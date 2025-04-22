@@ -10,3 +10,4 @@ https://lopsof.help
 ## More info
 
 Check out https://sitepress.cc for the latest and most up-to-date Sitepress documentation.
+[LeafletJS](https://github.com/Leaflet/Leaflet) release v1.9.4 (Latest as of 2025-04-22
