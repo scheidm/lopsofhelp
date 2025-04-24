@@ -29,7 +29,7 @@
         style="border: 1px solid black"
       ></iframe>
     
-      <%= image_tag "parks/#{current_page.request_path.split('/').last}-#{current_page.data.fetch('image', 1)}.jpg",onerror:"this.style.display='none'" %>
+      <%= image_tag "parks/#{current_page.request_path.split('/').last}-#{current_page.data.fetch('image', 1)}.jpg" rescue nil %>
 
       <%= yield %>
     </main>
