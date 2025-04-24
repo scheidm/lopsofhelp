@@ -1,3 +1,3 @@
 class Hike < ApplicationRecord
-  belongs_to :greenspace_id
+  belongs_to :greenspace
 end

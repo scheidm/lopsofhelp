@@ -2,7 +2,7 @@ class CreateHikes < ActiveRecord::Migration[7.2]
   def change
     create_table :hikes do |t|
       t.date :date
-      t.references :greenspace_id, null: false, foreign_key: true
+      t.references :greenspace, null: false, foreign_key: true
       t.integer :distance
       t.string :waste
 

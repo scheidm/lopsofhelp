@@ -57,3 +57,10 @@ group :test do
 end
 
 gem "sitepress-rails", "~> 4.0"
+gem "sitepress", "~> 4.0"
+
+gem "sass-rails", "~> 6.0"
+
+gem "bootstrap", "~> 5.3"
+
+gem "seed_dump", "~> 3.3"
