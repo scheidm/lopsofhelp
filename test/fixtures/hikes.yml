@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2025-04-24
+  greenspace_id: one
+  distance: 1
+  waste: MyString
+
+two:
+  date: 2025-04-24
+  greenspace_id: two
+  distance: 1
+  waste: MyString

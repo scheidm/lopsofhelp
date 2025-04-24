@@ -1,0 +1,2 @@
+class Geo < ApplicationRecord
+end

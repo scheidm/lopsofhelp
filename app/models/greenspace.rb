@@ -1,0 +1,2 @@
+class Greenspace < ApplicationRecord
+end

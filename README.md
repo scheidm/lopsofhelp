@@ -1,13 +1,24 @@
-# Lops of Help
+# README
 
-A website dedicated to helping everyone enjoy public green spaces, based South of Atlanta city center.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-A listing of public trails, and a community effort to cleaning up as we explore
+Things you may want to cover:
 
-https://lopsof.help
+* Ruby version
 
+* System dependencies
 
-## More info
+* Configuration
 
-Check out https://sitepress.cc for the latest and most up-to-date Sitepress documentation.
-[LeafletJS](https://github.com/Leaflet/Leaflet) release v1.9.4 (Latest as of 2025-04-22
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
