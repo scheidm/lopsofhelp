@@ -21,9 +21,10 @@ module PageHelper
     return '' if name.nil?
     '<a href="/cities/'+name.downcase.gsub(' ','-')+'">'+ pre_script + name + post_script+'</a>'
   end
-  
+  def site
+    Sitepress::Site.new root_path: ENV['sitepress_root']
+  end
   def park_pages
-    site = Sitepress::Site.new
     pages=site.glob("**/parks/*.html.*")
       .sort_by{ |page| page.data.dig("title")}
     pages.reject {|child| puts child;child.data["hide"] == true}
