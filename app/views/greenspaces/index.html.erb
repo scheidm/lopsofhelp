@@ -1,0 +1,19 @@
+<h3 style="text-align:center;margin:0">Cleaning public greenspaces South of ATL, and beyond! </h3>
+<% if false %>
+<% 
+  waste = Greenspace.convert_weight(Hike.all.sum(:waste)).round(1)
+%>
+<p>
+    As of <%= last_visit.strftime "%B %-d" %>, we've hiked more than <strong><%= distance_matching %> miles</strong>
+    and removed more than <strong><%= weight_matching %> pounds</strong> of garbage from the community.
+    That trash weighs the same as <%= weight_the_same_string  %></p>
+<div class="container flex-column"> 
+  <ul class="row ">
+    <% park_pages.each do |child| 
+      name = cities[child.data.fetch('id',nil)]
+    %>
+      <li class="col-6"><strong><%= link_to_page child %></strong> located in <%= raw(city_link pre_script:'', name: ,post_script:'') %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

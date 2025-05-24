@@ -1,0 +1,33 @@
+<% title = @object&.name || "Lops of Help" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <%= stylesheet_link_tag "site" %>
+  </head>
+  <body>
+    <header>
+      <a href="/" style="display: flex;flex-flow: column;align-items: center;">
+      <%= image_tag "bunny.jpg", class: "logo logo-light" %>
+      <%= image_tag "bunny.jpg", class: "logo logo-dark" %>
+      
+      <h1 id="title"><%= title %></h1></a>
+    </header>
+    <main>
+    <%= yield %>
+    <h3> Parks located in <%= title %> </h3>
+    <ul>
+      <% 
+        @object.greenspaces.each do |greenspace| 
+      %>
+        <li><%= link_to greenspace %></li>
+      <% end %>
+    </ul>
+    </main>
+    <footer>    
+      <br/><a href="/greenspaces">Find more trails!</a>
+    </footer>
+  </body>
+</html>

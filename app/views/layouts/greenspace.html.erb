@@ -1,0 +1,55 @@
+<% title = @object&.name || "Lops of Help" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <%= stylesheet_link_tag "site" %>
+    <%= stylesheet_link_tag "leaflet" %>
+    <%= javascript_include_tag "leaflet" %>
+  </head>
+  <body>
+    <header>
+      <a href="/" style="display: flex;flex-flow: column;align-items: center;">
+      <%= image_tag "bunny.jpg", class: "logo logo-light" %>
+      <%= image_tag "bunny.jpg", class: "logo logo-dark" %>
+      
+    </header>
+    <main>
+      <h1 id="title"><%= title %></h1></a>
+
+      <h3 style="text-align:center;margin:0">
+        <b>Street Address:</b>
+      </h3>
+      <% if false %>
+      <iframe 
+        width="800" height="400" 
+        src="<%= current_page.data.fetch('embed') %>" 
+        style="border: 1px solid black"
+      ></iframe>
+    
+      <%= image_tag "parks/#{current_page.request_path.split('/').last}-#{current_page.data.fetch('image', 1)}.jpg" rescue nil %>
+
+              <a href="<%= geo_to_open_maps(current_page.data.fetch('geo')) %>">
+              </a>
+
+      <% end %>
+
+      <%= yield %>
+    </main>
+    <footer>
+      <% if @object.hikes.length > 0
+        weight = @object.hikes.sum(:waste)
+        waste = Greenspace.convert_weight(weight).round(1)
+      %>
+      <p>
+      Lops of Help has removed <%= waste %> pounds of trash from <%= title %>.
+      That trash weighs the same as <%= weight_the_same_string weight %>.
+       Last visited on <%= @object.hikes.last.date.strftime '%B %-d' %>. <br/>
+      <%= link_to "More trails in #{@object.city}",  @object.city %>
+      <% end %>
+      <br/><a href="/greenspaces">Yet more trails!</a>
+    </footer>
+  </body>
+</html>
