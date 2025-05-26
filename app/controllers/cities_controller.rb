@@ -1,4 +1,4 @@
-class CitiesController < PagesController
+class CitiesController < ApplicationController
   layout "city"
   def index
     @object = OpenStruct.new name: "Greater ATL Cities"

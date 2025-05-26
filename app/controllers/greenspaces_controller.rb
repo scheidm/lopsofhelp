@@ -1,4 +1,4 @@
-class GreenspacesController < PagesController
+class GreenspacesController < ApplicationController
   layout 'greenspace', only: [:show]
   def index
     @object = OpenStruct.new name: "Squire Bun's Parks and Trails"

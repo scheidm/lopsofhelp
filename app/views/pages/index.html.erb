@@ -12,11 +12,28 @@
     <% end %>
 </ul>
 <script type="text/javascript">
+  var map;
   document.addEventListener('DOMContentLoaded', function() {
-    var map = L.map('map').setView([33.524398,-84.313679], 16);
+    map = L.map('map').setView([33.524398,-84.313679], 16);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+    var popup = L.popup();
+
+  L.polygon([
+      [33.525379, -84.313529],
+      [33.525432, -84.311609],
+      [33.526649, -84.310933]
+    ], {color: 'red'}).addTo(map);
+
+    function onMapClick(e) {
+      popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+      }
+    map.on('click', onMapClick);
+
   });
 </script>

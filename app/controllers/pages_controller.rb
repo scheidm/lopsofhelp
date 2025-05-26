@@ -1,16 +1,6 @@
 class PagesController < ApplicationController
   def index
   end
-
-  def show
-    begin
-      @object = object params[:id]
-      return render action: "show"
-    rescue => e
-      puts e
-      redirect_to action: :index
-    end  
-  end
   
   def not_found
     begin

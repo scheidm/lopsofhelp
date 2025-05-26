@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_24_185146) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_26_212546) do
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
+    t.integer "region_id"
     t.index ["name"], name: "index_cities_on_name"
+    t.index ["region_id"], name: "index_cities_on_region_id"
     t.index ["slug"], name: "index_cities_on_slug"
   end
 
@@ -32,10 +34,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_185146) do
   create_table "geos", force: :cascade do |t|
     t.string "lat"
     t.string "lon"
-    t.string "street_address"
     t.integer "greenspace_id"
     t.index ["greenspace_id"], name: "index_geos_on_greenspace_id"
-    t.index ["street_address"], name: "index_geos_on_street_address"
   end
 
   create_table "greenspaces", force: :cascade do |t|
@@ -69,6 +69,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_185146) do
     t.string "slug", null: false
     t.index ["name"], name: "index_pages_on_name"
     t.index ["slug"], name: "index_pages_on_slug"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
   end
 
   create_table "taggings", force: :cascade do |t|
