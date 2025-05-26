@@ -25,3 +25,5 @@ gem "bootstrap", "~> 5.3"
 gem "seed_dump", "~> 3.3"
 
 gem 'acts-as-taggable-on', '~> 12.0'
+
+#TODO: ? gem 'importmap-rails'
