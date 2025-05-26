@@ -1,8 +1,8 @@
 class CreateGreenspaces < ActiveRecord::Migration[7.2]
   def change
     create_table :greenspaces do |t|
-      t.string :name
-      t.references :city
+      t.string :name, null: false
+      t.references :city, null: false
       t.references :address, index: true, foreign_key: {to_table: :geos}
       t.string :slug, null: false
     end

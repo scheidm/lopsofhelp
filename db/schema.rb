@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_26_212546) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_26_213535) do
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
@@ -32,10 +32,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_26_212546) do
   end
 
   create_table "geos", force: :cascade do |t|
-    t.string "lat"
-    t.string "lon"
+    t.string "lat", null: false
+    t.string "lon", null: false
+    t.string "street_address"
     t.integer "greenspace_id"
     t.index ["greenspace_id"], name: "index_geos_on_greenspace_id"
+    t.index ["street_address"], name: "index_geos_on_street_address"
   end
 
   create_table "greenspaces", force: :cascade do |t|
