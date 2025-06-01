@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_26_213535) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_01_160517) do
+  create_table "animals", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "weight", null: false
+    t.integer "animal_id"
+    t.index ["animal_id"], name: "index_animals_on_animal_id"
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
