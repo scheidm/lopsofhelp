@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag "site" %>
     <%= stylesheet_link_tag "leaflet" %>
     <%= javascript_include_tag "leaflet" %>
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= javascript_include_tag "bootstrap" %>
   </head>
   <body>
     <header>
@@ -34,6 +36,40 @@
               <a href="<%= geo_to_open_maps(current_page.data.fetch('geo')) %>">
               </a>
 
+      <% end %>
+
+      <% if @object %>
+        <% images = find_greenspace_images(@object) %>
+        <% if images.any? %>
+          <div id="greenspaceCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <% images.each_with_index do |_, index| %>
+                <button type="button"
+                        data-bs-target="#greenspaceCarousel"
+                        data-bs-slide-to="<%= index %>"
+                        <%= 'class="active" aria-current="true"' if index == 0 %>>
+                </button>
+              <% end %>
+            </div>
+ 
+            <div class="carousel-inner">
+              <% images.each_with_index do |image, index| %>
+                <div class="carousel-item <%= 'active' if index == 0 %>">
+                  <%= image_tag "greenspaces/#{image}", class: "d-block w-100", style: "max-height: 500px; object-fit: cover;" %>
+                </div>
+              <% end %>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#greenspaceCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#greenspaceCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
       <% end %>
 
       <%= yield %>

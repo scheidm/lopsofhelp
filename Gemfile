@@ -26,4 +26,8 @@ gem "seed_dump", "~> 3.3"
 
 gem 'acts-as-taggable-on', '~> 12.0'
 
+# Image processing
+gem 'mini_magick', '~> 4.12'
+gem 'exifr', '~> 1.3'
+
 #TODO: ? gem 'importmap-rails'

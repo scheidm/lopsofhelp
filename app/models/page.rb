@@ -6,6 +6,7 @@ class Page < ApplicationRecord
     weight * 2.20462 / 1000
   end
 
-  def self.distance_formula
+  def self.distance_formula meters
+    meters / 1609.34
   end
 end
