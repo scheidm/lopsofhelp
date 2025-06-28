@@ -26,7 +26,7 @@ class Geo < ApplicationRecord
     lon_rad = lon.to_f * Math::PI / 180
 
     # Haversine formula to calculate distance
-    closest = tagged_with('address').min_by do |geo|
+    closest = Geo.where.not(street_address: nil).min_by do |geo|
       geo_lat_rad = geo.lat.to_f * Math::PI / 180
       geo_lon_rad = geo.lon.to_f * Math::PI / 180
 
@@ -57,7 +57,7 @@ class Geo < ApplicationRecord
     earth_radius * c
   end
 
-  def self.organize_gpx_points(file:, max_distance: 0.5, dry_run: false)
+  def self.organize_gpx_points(file:, max_distance: 4, dry_run: false)
     return {} if file.nil?
 
     begin
@@ -69,7 +69,8 @@ class Geo < ApplicationRecord
 
       # Initialize a hash to store points grouped by their closest address
       organized_points = Hash.new { |h, k| h[k] = [] }
-
+      count=0
+      discarded=0
       gpx_list.each do |point|
         lat = point['lat'].to_f
         lon = point['lon'].to_f
@@ -85,17 +86,21 @@ class Geo < ApplicationRecord
           lat2: closest_address.lat,
           lon2: closest_address.lon
         )
-
+        
         # Only include points within max_distance
         if distance <= max_distance
+          count+=1
           if dry_run
-            puts "Adding point to #{closest_address.address} at distance #{distance} #{lat}, #{lon}"
+            puts "Adding point to #{closest_address.street_address} at distance #{distance} #{lat}, #{lon}"
           else
             Geo.create(lat: lat, lon: lon, greenspace: closest_address)
           end
+        else
+          discarded+=1
+          puts "Point too far from #{closest_address.street_address} at distance #{distance} #{lat}, #{lon}"
         end
       end
-
+      puts "Added #{count} points, discarded #{discarded} points"
       organized_points
     rescue Errno::ENOENT
       puts "Error reading file: #{file}"
