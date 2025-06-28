@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_01_160517) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_28_205035) do
   create_table "animals", force: :cascade do |t|
     t.string "name", null: false
     t.integer "weight", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_160517) do
     t.string "street_address"
     t.integer "greenspace_id"
     t.index ["greenspace_id"], name: "index_geos_on_greenspace_id"
+    t.index ["lat", "lon"], name: "index_geos_on_lat_and_lon", unique: true
     t.index ["street_address"], name: "index_geos_on_street_address"
   end
 

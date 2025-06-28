@@ -9,6 +9,28 @@
     As of <%= Hike.last.date.strftime "%B %-d" %>, we've hiked more than <strong><%= distance.round(1) %> miles</strong>
     and removed more than <strong><%= waste %> pounds</strong> of garbage from the community.
     That trash weighs the same as <%= animals.map{ |k,a| "#{a[:count]} #{k}" }.join(", ") %></p>
+
+<div id="map" style="height: 500px; width: 100%; margin: 20px 0;"></div>
+
+<script>
+  // Initialize the map
+  const map = L.map('map').setView([33.7490, -84.3880], 10); // Atlanta coordinates
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Add markers for each geo
+  let marker;
+  <% @geos.each do |geo| %>
+    <% if geo.street_address.present? %>
+      marker = L.marker([<%= geo.lat %>, <%= geo.lon %>]).addTo(map);
+      marker.bindPopup("<strong><%= geo.street_address %></strong>");
+    <% end %>
+  <% end %>
+</script>
+
 <% if false %>
 <div class="container flex-column"> 
   <ul class="row ">
