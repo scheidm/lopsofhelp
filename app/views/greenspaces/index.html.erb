@@ -21,6 +21,35 @@
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
+  console.log("geos count: <%= @geos.count %>");
+  // Group geos by greenspace ID
+  const geosByGreenspace = {};
+  <% @geos.order(:id).each do |geo| %>
+    <% if geo.greenspace_id.present? %>
+      if (!geosByGreenspace[<%= geo.greenspace_id %>]) {
+        geosByGreenspace[<%= geo.greenspace_id %>] = [];
+      }
+      geosByGreenspace[<%= geo.greenspace_id %>].push([<%= geo.lat %>, <%= geo.lon %>]);
+    <% end %>
+  <% end %>
+
+  let coordinates;
+  // Add shapes for each greenspace group
+  console.log(geosByGreenspace);
+  Object.keys(geosByGreenspace).forEach((greenspaceId, index) => {
+    coordinates = geosByGreenspace[greenspaceId];
+    
+    // Create a polyline connecting all geos in the greenspace
+    const polyline = L.polyline(coordinates, {
+      color: `hsl(${index * 30 % 360}, 70%, 50%)`,
+      weight: 3,
+      opacity: 0.8
+    }).addTo(map);
+    
+    // Add popup with greenspace info
+    polyline.bindPopup(`Greenspace ID: ${greenspaceId}<br>Points: ${coordinates.length}`);
+  });
+
   // Add markers for each geo
   let marker;
   <% @geos.each do |geo| %>

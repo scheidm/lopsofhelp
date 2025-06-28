@@ -21,7 +21,7 @@ class Greenspace < Page
         lat2: geo.lat,
         lon2: geo.lon
       )
-      distance <= max_distance_km
+      distance >= max_distance_km
     end
   end
 

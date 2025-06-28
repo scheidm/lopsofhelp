@@ -93,7 +93,8 @@ class Geo < ApplicationRecord
           if dry_run
             puts "Adding point to #{closest_address.street_address} at distance #{distance} #{lat}, #{lon}"
           else
-            Geo.create(lat: lat, lon: lon, greenspace: closest_address)
+            new_geo = Geo.find_or_create_by(lat: lat, lon: lon)
+            new_geo.update(greenspace_id: closest_address.greenspace_id)
           end
         else
           discarded+=1
